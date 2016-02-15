@@ -1,0 +1,101 @@
+<section ng-controller="CustomersUpdateController as customerUpCtrl">
+  <div class="modal-header">
+    <h3 class="modal-title">Update: {{customer.firstName}} {{customer.lastName}}</h3>
+  </div>
+  <div class="modal-body">
+    
+    <form name="customerUpdateForm" class="">
+      <fieldset>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <i class="glyphicon glyphicon-user cust-profile" ng-class="{'text-primary': customer.referred, 'text-danger': !customer.referred}"></i>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group" show-errors>
+              <label for="firstName">First Name</label>
+              <input name="firstName" type="text" ng-model="customer.firstName" id="firstName" class="form-control" placeholder="First Name" required>
+              <div ng-messages="customerUpdateForm.firstName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">First Name is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="lastName">Last Name</label>
+              <input name="lastName" type="text" ng-model="customer.lastName" id="lastName" class="form-control" placeholder="Last Name" required>
+              <div ng-messages="customerUpdateForm.lastName.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Last Name is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="suburb">Suburb</label>
+              <input name="suburb" type="text" ng-model="customer.suburb" id="suburb" class="form-control" placeholder="Suburb" required>
+              <div ng-messages="customerUpdateForm.suburb.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Suburb is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="country">Country</label>
+              <input name="country" type="text" ng-model="customer.country" id="country" class="form-control" placeholder="Country" required>
+              <div ng-messages="customerUpdateForm.country.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Country is required.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-sm-push-6">
+            <div class="form-group" show-errors>
+              <label for="phone">Phone</label>
+              <input name="phone" type="text" ng-model="customer.phone" id="phone" class="form-control" placeholder="Phone" required>
+              <div ng-messages="customerUpdateForm.phone.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Phone is required.</p>
+              </div>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="email">Email</label>
+              <input name="email" type="text" ng-model="customer.email" id="email" class="form-control" placeholder="Email" required>
+              <div ng-messages="customerUpdateForm.email.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Email is required.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-sm-pull-6">
+            <div class="form-group">
+              <label for="referred">Referred</label>
+              <input name="referred" type="checkbox" ng-model="customer.referred" id="referred" class="form-control">
+            </div>
+            <div class="form-group" show-errors>
+              <label for="channel">Channel</label>
+              <select name="channel" ng-model="customer.channel" id="channel" class="form-control" required ng-options="opt.caption for opt in channelOptions track by opt.id">
+                <option value="">-- choose channel --</option>
+              </select>
+              <div ng-messages="customerUpdateForm.channel.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Channel is required.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group" show-errors>
+              <label for="industry">Industry</label>
+              <input name="industry" type="text" ng-model="customer.industry" id="industry" class="form-control" placeholder="Industry" required>
+              <div ng-messages="customerUpdateForm.industry.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Industry is required.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success btn-lg" type="button" ng-click="customerUpCtrl.update(customer); ok()" ng-disabled="customerUpdateForm.$invalid">Update & Close</button>
+    <button class="btn btn-warning btn-lg" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+
+</section>
